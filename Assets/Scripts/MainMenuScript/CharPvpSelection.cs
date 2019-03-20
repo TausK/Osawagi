@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public class CharPvpSelection : MonoBehaviour
 {
-    public KeyBindings keyBindings;
+  
 
     private bool playSelect;
     private bool chooseMode;
-    private bool survival;
+ 
     private float scrW;
     private float scrH;
 
     public GUIStyle geisha, oni, samurai, ninja, oneVOne, back, start, reselect, firstPlayer, secondPlayer, chooseCharTitle, survivalStyle;
+
+ 
 
     public string[] selectChars = new string[2];
     // public string[] playerScore = new string[2];
@@ -31,7 +33,7 @@ public class CharPvpSelection : MonoBehaviour
         charIcon[2] = Resources.Load("Icons/SamuraiIcon") as Texture2D;
         charIcon[3] = Resources.Load("Icons/NinjaIcon") as Texture2D;
 
-        chooseMode = true;
+        playSelect = true;
         selectChars[0] = "";
         selectChars[1] = "";
     }
@@ -46,26 +48,7 @@ public class CharPvpSelection : MonoBehaviour
     }
     void OnGUI()
     {
-        if (chooseMode)
-        {
-
-            if (GUI.Button(new Rect(5.0f * scrW, 2.0f * scrH, 5.0f * scrW, 3.0f * scrH), "", oneVOne))
-            {
-                chooseMode = false;
-                playSelect = true;
-            }
-            if (GUI.Button(new Rect(6.5f * scrW, 7.8f * scrH, 2.0f * scrW, 1.0f * scrH), "", back))
-            {
-                chooseMode = false;
-                SceneManager.LoadScene("MainMenuOsawagi");
-            }
-            if(GUI.Button(new Rect(5.0f * scrW, 4.0f * scrH, 5.0f * scrW, 3.0f * scrH), "", survivalStyle))
-            {
-                chooseMode = false;
-                SceneManager.LoadScene("SurvivalMode");
-            }
-        }
-        if (playSelect == true)
+        if (playSelect)
         {
             GUI.Box(new Rect(5.0f * scrW, 4.0f * scrH, 2.0f * scrW, 0.5f * scrH), "Geisha", chooseCharTitle);
             GUI.Box(new Rect(8.0f * scrW, 4.0f * scrH, 2.0f * scrW, 0.5f * scrH), "Oni", chooseCharTitle);
@@ -73,7 +56,7 @@ public class CharPvpSelection : MonoBehaviour
             GUI.Box(new Rect(8.0f * scrW, 6.5f * scrH, 2.0f * scrW, 0.5f * scrH), "Ninja", chooseCharTitle);
 
             GUI.Box(new Rect(5.0f * scrW, 0.5f * scrH, 5.0f * scrW, 1.0f * scrH), "Choose 2 Characters!", chooseCharTitle);
-            GUI.Box(new Rect(1.0f * scrW, 0.5f * scrH, 3.0f * scrW, 1.5f * scrH), "\n" + selectChars[0], firstPlayer);
+            GUI.Box(new Rect(1.0f * scrW, 0.5f * scrH, 3.0f * scrW, 1.5f * scrH), "Player 1");
             if (selectChars[0] != "")
             {
                 if (GUI.Button(new Rect(1.0f * scrW, 4.5f * scrH, 3.0f * scrW, 1.2f * scrH), "", reselect))
@@ -82,7 +65,7 @@ public class CharPvpSelection : MonoBehaviour
                 }
                 GUI.DrawTexture(new Rect(1.0f * scrW, 1.7f * scrH, 3.0f * scrW, 3.0f * scrH), charIcon[indexP1]);
             }
-            GUI.Box(new Rect(11.0f * scrW, 0.5f * scrH, 3.0f * scrW, 1.5f * scrH), "\n" + selectChars[1], secondPlayer);
+            GUI.Box(new Rect(11.0f * scrW, 0.5f * scrH, 3.0f * scrW, 1.5f * scrH), "Player 2");
             if (selectChars[1] != "")
             {
                 if (GUI.Button(new Rect(11.0f * scrW, 4.5f * scrH, 3f * scrW, 1.2f * scrH), "", reselect))
@@ -176,7 +159,7 @@ public class CharPvpSelection : MonoBehaviour
                 selectChars[0] = "";
                 selectChars[1] = "";
                 playSelect = false;
-                chooseMode = true;
+                SceneManager.LoadScene(0);
             }
         }
     }
