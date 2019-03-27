@@ -16,7 +16,7 @@ public class PvpSelect : MonoBehaviour
     //Set index for player 1 & 2
     public int indexP1;
     public int indexP2;
-    
+
     #endregion
 
     // Start is called before the first frame update
@@ -31,8 +31,8 @@ public class PvpSelect : MonoBehaviour
         #endregion
     }
 
-    private void OnGUI()
+    public void BackBtn()
     {
-        
+        SceneManager.LoadScene(0);
     }
 }
